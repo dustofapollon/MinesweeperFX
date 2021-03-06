@@ -1,4 +1,4 @@
-package org.gui;
+package de.agym.info.minesweeper.gui;
 
 import java.net.URL;
 import java.util.ResourceBundle;

@@ -15,4 +15,4 @@ javafx {
     modules = [ 'javafx.controls', 'javafx.fxml' ]
 }
 
-mainClassName = 'org.openjfx.MainApp'
+mainClassName = 'de.agym.info.minesweeper.gui.MainApp'
