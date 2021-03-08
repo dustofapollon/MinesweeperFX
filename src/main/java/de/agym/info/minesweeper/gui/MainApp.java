@@ -1,10 +1,13 @@
 package de.agym.info.minesweeper.gui;
 
 import javafx.application.Application;
+import javafx.event.EventHandler;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 
@@ -29,3 +32,24 @@ public class MainApp extends Application {
     }
 
 }
+
+   /* private Button startGame;
+
+    public EventHandler bigEventhandler() {
+        EventHandler<MouseEvent> eventHandler= new EventHandler<MouseEvent>() {
+            public void handle(MouseEvent e) {
+                e.;
+            }
+
+        };
+        return eventHandler;
+    }
+    private void initButton() {
+        startGame.setText("Start Game");
+
+
+         }*/
+
+
+
+

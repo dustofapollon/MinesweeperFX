@@ -2,11 +2,13 @@ package de.agym.info.minesweeper.gui;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.event.ActionEvent;
+
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 
 public class FXMLController implements Initializable {
@@ -14,29 +16,49 @@ public class FXMLController implements Initializable {
     @FXML
     private Label label;
 
-    @FXML
-    private Button startGame;
+
 
     @FXML
     private GridPane raster;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        initLabel();
-        initButton();
+       // initLabel();
         initGridPane();
     }
+    public EventHandler createEventhandler() {
+        EventHandler<MouseEvent> eventHandler= new EventHandler<MouseEvent>() {
+            public void handle(MouseEvent e) {
+                System.out.println("Button clicked" + e.getSource());
+            }
 
-    private void initButton() {
-        startGame.setText("Start Game");
+        };
+        return eventHandler;
     }
 
-    private void initLabel() {
+    /*private void initLabel() {
         String javaVersion = System.getProperty("java.version");
         String javafxVersion = System.getProperty("javafx.version");
         label.setText("Test");
-    }
+    } */
     private void initGridPane(){
+
+        int height = 5;
+        int width = 5;
+        GridPane gridPane;
+        gridPane = raster;
+
+        for(int iSpalte = 0; iSpalte <= width; iSpalte++){
+            for(int iZeile = 0; iZeile <= height; iZeile++){
+                System.out.println("Button"+ iZeile +"/"+ iSpalte);
+                    Button button = new Button("Button"+ iZeile +"/"+ iSpalte);
+                    button.addEventFilter(MouseEvent.MOUSE_CLICKED, createEventhandler());
+                    button.setMaxSize(100,100);
+                    button.setMinSize(100,100);
+                gridPane.add(button, iSpalte, iZeile, 1, 1);
+            }
+        }
+        /*
         Button button1 = new Button("Button 1");
         Button button2 = new Button("Button 2");
         Button button3 = new Button("Button 3");
@@ -44,13 +66,10 @@ public class FXMLController implements Initializable {
         Button button5 = new Button("Button 5");
         Button button6 = new Button("Button 6");
 
-        GridPane gridPane;
-        gridPane = raster;
-        gridPane.add(button1, 0, 0, 1, 1);
-        gridPane.add(button2, 1, 0, 1, 1);
-        gridPane.add(button3, 2, 0, 1, 1);
-        gridPane.add(button4, 0, 1, 1, 1);
-        gridPane.add(button5, 1, 1, 1, 1);
-        gridPane.add(button6, 2, 1, 1, 1);
+         */
+
+
+
+
     }
 }
