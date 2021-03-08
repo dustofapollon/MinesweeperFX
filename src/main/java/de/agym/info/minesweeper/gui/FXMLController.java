@@ -1,6 +1,5 @@
 package de.agym.info.minesweeper.gui;
 
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.net.URL;
@@ -17,11 +16,11 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 
 public class FXMLController implements Initializable {
-    
+
+
+    private static String markierungsBild = "src/main/resources/flagge (2).png";
     @FXML
     private Label label;
-
-
 
     @FXML
     private GridPane raster;
@@ -35,18 +34,21 @@ public class FXMLController implements Initializable {
         EventHandler<MouseEvent> eventHandler= new EventHandler<MouseEvent>() {
             public void handle(MouseEvent e) {
                 System.out.println("Button clicked" + e.getSource());
+               if( e.getSource() instanceof Button) {
+                   Button klickKnopf = (Button) e.getSource();
+                   ImageView flagge = getBild(markierungsBild);
+
+                   klickKnopf.setGraphic(flagge);
+
+               }
             }
 
         };
         return eventHandler;
     }
 
-    /*private void initLabel() {
-        String javaVersion = System.getProperty("java.version");
-        String javafxVersion = System.getProperty("javafx.version");
-        label.setText("Test");
-    } */
-    public Image getBild(String name){
+
+    public ImageView getBild(String name){
         FileInputStream input0;
         try {
             input0 = new FileInputStream(name);
@@ -56,20 +58,25 @@ public class FXMLController implements Initializable {
 
         Image image;
         image = new Image(input0);
-        return image;
+        ImageView view = new ImageView(image);
+        view.setFitHeight(80);
+        view.setPreserveRatio(true);
+        return view;
     }
     public Button getButton(int iZeile, int iSpalte){
 
-        Image fackel;
-        fackel = getBild("src/main/resources/torch.png");
-        Image stein;
+        ImageView obama;
+        obama = getBild("src/main/resources/obama.jpg");
+        ImageView fackel;
+        fackel = getBild(markierungsBild);
+        ImageView stein;
         stein = getBild("src/main/resources/stone.jpg");
-        Image grass;
+        ImageView grass;
         grass= getBild("src/main/resources/grass.jpg");
-        Image holz;
+        ImageView holz;
         holz = getBild("src/main/resources/wood.png");
 
-        Image image = fackel;
+        ImageView image = obama;
 
         if(iZeile %3 == 0) {
             image = grass;
@@ -81,11 +88,9 @@ public class FXMLController implements Initializable {
             image = holz;
         }
 
-        ImageView view = new ImageView(image);
-        view.setFitHeight(80);
-        view.setPreserveRatio(true);
+
         Button knopftest = new Button("Button"+ iZeile +"/"+ iSpalte);
-        knopftest.setGraphic(view);
+        knopftest.setGraphic(image);
         return knopftest;
     }
     private void initGridPane(){
@@ -106,15 +111,6 @@ public class FXMLController implements Initializable {
                 gridPane.add(button, iSpalte, iZeile, 1, 1);
             }
         }
-        /*
-        Button button1 = new Button("Button 1");
-        Button button2 = new Button("Button 2");
-        Button button3 = new Button("Button 3");
-        Button button4 = new Button("Button 4");
-        Button button5 = new Button("Button 5");
-        Button button6 = new Button("Button 6");
-
-         */
 
 
 
