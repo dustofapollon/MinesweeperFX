@@ -2,6 +2,7 @@ package de.agym.info.minesweeper.gui;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -45,33 +46,39 @@ public class FXMLController implements Initializable {
         String javafxVersion = System.getProperty("javafx.version");
         label.setText("Test");
     } */
-    public Button getButton(int iZeile, int iSpalte){
+    public Image getBild(String name){
         FileInputStream input0;
-        FileInputStream input1;
-        FileInputStream input2;
-        FileInputStream input3;
         try {
-            input0 = new FileInputStream("src/main/resources/torch.png");
-            input1 = new FileInputStream("src/main/resources/grass.jpg");
-            input2 = new FileInputStream("src/main/resources/stone.jpg");
-            input3 = new FileInputStream("src/main/resources/wood.png");
-
-
-        }
-        catch (Exception e){
+            input0 = new FileInputStream(name);
+        } catch (FileNotFoundException e) {
             throw new RuntimeException("Pfad nicht gefunden");
         }
+
         Image image;
         image = new Image(input0);
+        return image;
+    }
+    public Button getButton(int iZeile, int iSpalte){
+
+        Image fackel;
+        fackel = getBild("src/main/resources/torch.png");
+        Image stein;
+        stein = getBild("src/main/resources/stone.jpg");
+        Image grass;
+        grass= getBild("src/main/resources/grass.jpg");
+        Image holz;
+        holz = getBild("src/main/resources/wood.png");
+
+        Image image = fackel;
 
         if(iZeile %3 == 0) {
-             image = new Image(input1);
+            image = grass;
         }
         if(iZeile %3 == 1) {
-             image = new Image(input2);
+            image = stein;
         }
         if(iZeile %3== 2) {
-             image = new Image(input3);
+            image = holz;
         }
 
         ImageView view = new ImageView(image);
