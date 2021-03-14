@@ -32,17 +32,21 @@ public class FXMLController implements Initializable {
     private static String stone7 = "src/main/resources/stone7.png";
     private static String stone8 = "src/main/resources/stone8.png";
 
-    private static double screenWidth = 800;
-    private static double screenHeight = 600;
+    private static double screenWidth = 1920;
+    private static double screenHeight = 1080;
 
-    private static double height = 3;
-    private static double width = 3;
+
+    private static double height = 10;
+    private static double width = 10;
 
     @FXML
     private Label label;
 
     @FXML
     private GridPane raster;
+
+    @FXML
+    private StackPane pane;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -52,13 +56,18 @@ public class FXMLController implements Initializable {
     }
 
     public void backGround(){
-        BackgroundSize mySize = new BackgroundSize(screenWidth,screenHeight,false,false,false,false);
+        BackgroundSize mySize = new BackgroundSize(screenWidth,
+                screenHeight,
+                false,
+                false,
+                false,
+                false);
         BackgroundImage myBI= new BackgroundImage(getBild(bg1),
-                BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
+                BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
                 mySize);
 
 //then you set to your node
-        raster.setBackground(new Background(myBI));
+        pane.setBackground(new Background(myBI));
     }
 
     public EventHandler createEventhandler(int x, int y) {
