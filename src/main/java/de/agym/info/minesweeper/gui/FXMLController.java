@@ -22,13 +22,21 @@ import javafx.scene.layout.VBox;
 public class FXMLController implements Initializable {
 
 
-    private static String markierungsBild = "src/main/resources/flagge (2).png";
+    private static String markierungsBild = "src/main/resources/markiertfinal.png";
+    private static String stone1 = "src/main/resources/stone1.png";
+    private static String stone2 = "src/main/resources/stone2.png";
+    private static String stone3 = "src/main/resources/stone3.png";
+    private static String stone4 = "src/main/resources/stone4.png";
+    private static String stone5 = "src/main/resources/stone5.png";
+    private static String stone6 = "src/main/resources/stone6.png";
+    private static String stone7 = "src/main/resources/stone7.png";
+    private static String stone8 = "src/main/resources/stone8.png";
 
     private static int screenWidth = 600;
     private static int screenHeight = 400;
 
     private static int height = 10;
-    private static int width = 5;
+    private static int width = 10;
 
     @FXML
     private Label label;
@@ -42,13 +50,53 @@ public class FXMLController implements Initializable {
         initGridPane();
     }
 
-    public EventHandler createEventhandler() {
+    public EventHandler createEventhandler(int x, int y) {
         EventHandler<MouseEvent> eventHandler = new EventHandler<MouseEvent>() {
             public void handle(MouseEvent e) {
-                System.out.println("Button clicked" + e.getSource());
+                int getWert;
+                int range = 8;
+                int min= 1;
+                getWert = (int)(Math.random() * range) + min;
+                System.out.println("Button clicked" + x+ "/"+ y);
                 if (e.getSource() instanceof ImageView && e.getButton() == MouseButton.SECONDARY) {
                     ImageView current = (ImageView) e.getSource();
                     current.setImage(getBild(markierungsBild));
+
+
+                }
+                if (e.getSource() instanceof ImageView && e.getButton() == MouseButton.PRIMARY) {
+                    if(getWert==1) {
+                        ImageView current = (ImageView) e.getSource();
+                        current.setImage(getBild(stone1));
+                    }
+                    if(getWert==2) {
+                        ImageView current = (ImageView) e.getSource();
+                        current.setImage(getBild(stone2));
+                    }
+                    if(getWert==3) {
+                        ImageView current = (ImageView) e.getSource();
+                        current.setImage(getBild(stone3));
+                    }
+                    if(getWert==4) {
+                        ImageView current = (ImageView) e.getSource();
+                        current.setImage(getBild(stone4));
+                    }
+                    if(getWert==5) {
+                        ImageView current = (ImageView) e.getSource();
+                        current.setImage(getBild(stone5));
+                    }
+                    if(getWert==6) {
+                        ImageView current = (ImageView) e.getSource();
+                        current.setImage(getBild(stone6));
+                    }
+                    if(getWert==7) {
+                        ImageView current = (ImageView) e.getSource();
+                        current.setImage(getBild(stone7));
+                    }
+                    if(getWert==8) {
+                        ImageView current = (ImageView) e.getSource();
+                        current.setImage(getBild(stone8));
+                    }
 
 
                 }
@@ -80,23 +128,17 @@ public class FXMLController implements Initializable {
         Image fackel;
         fackel = getBild(markierungsBild);
         Image stein;
-        stein = getBild("src/main/resources/stone.jpg");
+        stein = getBild("src/main/resources/stonefinal.png");
         Image grass;
-        grass = getBild("src/main/resources/grass.jpg");
+        grass = getBild("src/main/resources/grassfinal.png");
         Image holz;
-        holz = getBild("src/main/resources/wood.png");
+        holz = getBild("src/main/resources/rahmenfinal.png");
 
         Image image = obama;
 
-        if (iZeile % 3 == 0) {
             image = grass;
-        }
-        if (iZeile % 3 == 1) {
-            image = stein;
-        }
-        if (iZeile % 3 == 2) {
-            image = holz;
-        }
+
+
 
         ImageView view = new ImageView(image);
         int boxhoehe;
@@ -126,7 +168,7 @@ public class FXMLController implements Initializable {
                 HBox hBox = new HBox(imageBox);
                 hBox.setMaxSize(screenWidth/width, screenHeight/height);
                 hBox.setMinSize(screenWidth/width, screenHeight/height);
-                imageBox.addEventFilter(MouseEvent.MOUSE_CLICKED, createEventhandler());
+                imageBox.addEventFilter(MouseEvent.MOUSE_CLICKED, createEventhandler(iZeile,iSpalte));
                 hBox.setAlignment(Pos.BASELINE_CENTER);
                 //HBox.setMargin(hBox, new Insets(50, 50, 50, 50));
                 gridPane.add(hBox, iSpalte, iZeile, 1, 1);
