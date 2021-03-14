@@ -10,12 +10,14 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
+import javafx.stage.Screen;
 
 public class FXMLController implements Initializable {
 
@@ -36,8 +38,8 @@ public class FXMLController implements Initializable {
     private static double screenHeight = 1080;
 
 
-    private static double height = 10;
-    private static double width = 10;
+    private static double height = 20;
+    private static double width = 20;
 
     @FXML
     private Label label;
@@ -51,6 +53,10 @@ public class FXMLController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // initLabel();
+        Rectangle2D screenBounds = Screen.getPrimary().getBounds();
+
+        screenHeight = screenBounds.getHeight();
+        screenWidth = screenBounds.getWidth();
         initGridPane();
         backGround();
     }
@@ -65,6 +71,7 @@ public class FXMLController implements Initializable {
         BackgroundImage myBI= new BackgroundImage(getBild(bg1),
                 BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
                 mySize);
+
 
 //then you set to your node
         pane.setBackground(new Background(myBI));
@@ -173,7 +180,7 @@ public class FXMLController implements Initializable {
         ImageView view = new ImageView(image);
         double boxhoehe;
         boxhoehe = boxSize();
-        view.setFitHeight(boxhoehe*0.5);
+        view.setFitHeight(boxhoehe*0.8);
         view.setPreserveRatio(true);
         //VBox knopftest = new VBox(image);
 
