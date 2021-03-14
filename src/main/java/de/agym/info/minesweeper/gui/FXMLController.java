@@ -19,6 +19,11 @@ public class FXMLController implements Initializable {
 
 
     private static String markierungsBild = "src/main/resources/flagge (2).png";
+
+
+    private static int height = 5;
+    private static int width = 10;
+
     @FXML
     private Label label;
 
@@ -59,7 +64,10 @@ public class FXMLController implements Initializable {
         Image image;
         image = new Image(input0);
         ImageView view = new ImageView(image);
-        view.setFitHeight(80);
+        //view.setFitHeight(400/height);;
+        //view.setFitWidth(600/width);
+        //view.fitWidthProperty().bind(.widthProperty());
+        //img.fitHeightProperty().bind(btn.heightProperty());
         view.setPreserveRatio(true);
         return view;
     }
@@ -94,26 +102,23 @@ public class FXMLController implements Initializable {
         return knopftest;
     }
     private void initGridPane(){
+//Input für Feldgröße
 
-        int height = 5;
-        int width = 5;
         GridPane gridPane;
         gridPane = raster;
 
-        for(int iSpalte = 0; iSpalte <= width; iSpalte++){
-            for(int iZeile = 0; iZeile <= height; iZeile++){
+        for(int iSpalte = 0; iSpalte < width; iSpalte++){
+            for(int iZeile = 0; iZeile < height; iZeile++){
                 System.out.println("Button"+ iZeile +"/"+ iSpalte);
 
                     Button button = getButton(iZeile,iSpalte);
                     button.addEventFilter(MouseEvent.MOUSE_CLICKED, createEventhandler());
-                    button.setMaxSize(100,100);
-                    button.setMinSize(100,100);
+                        button.setMaxSize(600/width,400/height);
+                        button.setMinSize(600/width,400/height);
+
                 gridPane.add(button, iSpalte, iZeile, 1, 1);
             }
         }
-
-
-
 
     }
 }
