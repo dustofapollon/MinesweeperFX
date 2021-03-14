@@ -38,6 +38,7 @@ public class FXMLController implements Initializable {
     private static int height = 10;
     private static int width = 10;
 
+
     @FXML
     private Label label;
 
@@ -47,9 +48,15 @@ public class FXMLController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // initLabel();
-        initGridPane();
-    }
 
+        initGridPane();
+
+    }
+    public void createBackground(){
+        HBox background = new HBox(Double.parseDouble(markierungsBild));
+        background.setMaxSize(screenWidth, screenHeight);
+        background.setMinSize(screenWidth, screenHeight);
+    }
     public EventHandler createEventhandler(int x, int y) {
         EventHandler<MouseEvent> eventHandler = new EventHandler<MouseEvent>() {
             public void handle(MouseEvent e) {
