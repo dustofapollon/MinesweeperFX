@@ -25,6 +25,13 @@ public class FXMLController implements Initializable {
     private static String markierungsBild = "src/main/resources/markiertfinal.png";
     private static String grassfinal = "src/main/resources/grassfinal.png";
     private static String bg1= "src/main/resources/bg1.gif";
+    private static String bg2= "src/main/resources/bg2.gif";
+    private static String bg3= "src/main/resources/bg3.gif";
+    private static String bg4= "src/main/resources/bg4.gif";
+    private static String bg5= "src/main/resources/bg5.gif";
+    private static String bg6= "src/main/resources/bg6.gif";
+
+
     private static String stone1 = "src/main/resources/stone1.png";
     private static String stone2 = "src/main/resources/stone2.png";
     private static String stone3 = "src/main/resources/stone3.png";
@@ -38,8 +45,8 @@ public class FXMLController implements Initializable {
     private static double screenHeight = 1080;
 
 
-    private static double height = 20;
-    private static double width = 20;
+    private static double height = 10;
+    private static double width = 10;
 
     @FXML
     private Label label;
@@ -68,7 +75,7 @@ public class FXMLController implements Initializable {
                 false,
                 false,
                 false);
-        BackgroundImage myBI= new BackgroundImage(getBild(bg1),
+        BackgroundImage myBI= new BackgroundImage(getBild(bg3),
                 BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
                 mySize);
 
