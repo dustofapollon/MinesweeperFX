@@ -24,6 +24,7 @@ public class MainApp extends Application {
 
         stage.setTitle("MineSweeper");
         stage.setScene(scene);
+        stage.setFullScreen(false);
         stage.show();
     }
 
