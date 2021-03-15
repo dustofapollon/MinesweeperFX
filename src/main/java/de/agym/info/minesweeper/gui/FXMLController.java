@@ -17,6 +17,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
+import javafx.scene.robot.Robot;
 import javafx.stage.Screen;
 
 public class FXMLController implements Initializable {
@@ -129,6 +130,23 @@ public class FXMLController implements Initializable {
                         ImageView current = (ImageView) e.getSource();
                         current.setImage(getBild(stone));
                         opened = true;
+                            if(aktuellX != 0){
+                                createEventhandler(aktuellX-1, aktuellY);
+                                opened= true;
+
+                            }
+                        if(aktuellY != 0){
+                            createEventhandler(aktuellX, aktuellY-1);
+                            opened= true;
+                        }
+                        if(aktuellX != width-1){
+                            createEventhandler(aktuellX+1, aktuellY);
+                            opened = true;
+                        }
+                        if(aktuellY !=height-1){
+                            createEventhandler(aktuellX-1, aktuellY+1);
+                            opened = true;
+                        }
                     }
                     if(current_box.value==1) {
                         ImageView current = (ImageView) e.getSource();
