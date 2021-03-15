@@ -1,5 +1,6 @@
 package de.agym.info.minesweeper.gui;
 
+import java.awt.event.InputEvent;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.net.URL;
@@ -47,8 +48,8 @@ public class FXMLController implements Initializable {
     private static double screenHeight = 1080;
 
 
-    private static double height = 5;
-    private static double width = 5;
+    private double height = 10;
+    private double width = 10;
 
     @FXML
     private Label label;
@@ -58,6 +59,7 @@ public class FXMLController implements Initializable {
 
     @FXML
     private StackPane pane;
+    private backend_bone backend;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -66,16 +68,11 @@ public class FXMLController implements Initializable {
 
         screenHeight = screenBounds.getHeight();
         screenWidth = screenBounds.getWidth();
+        this.height = backend.getHeight();
+        this.width = backend.getWidth();
+
         initGridPane();
         backGround();
-    }
-
-    public double getHeight(){
-        return height;
-    }
-
-    public static double getWidth() {
-        return width;
     }
 
     public void backGround(){
@@ -123,6 +120,8 @@ public class FXMLController implements Initializable {
                 int aktuellY;
                 aktuellX = x;
                 aktuellY = y;
+                Robot robot = new Robot();
+
                 Box current_box = backend_bone.get_Box(aktuellX,aktuellY);
                 if (e.getSource() instanceof ImageView && e.getButton() == MouseButton.PRIMARY) {
 
@@ -131,7 +130,9 @@ public class FXMLController implements Initializable {
                         current.setImage(getBild(stone));
                         opened = true;
                             if(aktuellX != 0){
-                                createEventhandler(aktuellX-1, aktuellY);
+                                robot.mousePress();
+                                createEventhandler(aktuellX-1,aktuellY-1);
+                               // aktuellX-1,aktuellY-1;
                                 opened= true;
 
                             }
@@ -274,5 +275,8 @@ public class FXMLController implements Initializable {
 
     }
 
+    public void setBackend(backend_bone backend) {
+        this.backend = backend;
+    }
 }
 

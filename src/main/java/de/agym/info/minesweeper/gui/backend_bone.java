@@ -8,10 +8,16 @@ public class backend_bone {
     private Box last_Box;
     private Box up1_Box;
     private Box up2_Box;
+    private int width;
+    private int height;
+    private Runnable looseCallback;
     // Ende Attribute
 
     // Anfang Methoden
     public backend_bone(int width, int height, int bombs) {
+        this.width = width;
+        this.height = height;
+        System.out.println("width = " + width + ", height = " + height + ", bombs = " + bombs);
         first_Box = new Box();
         current_Box = first_Box;
         last_Box = first_Box;
@@ -87,6 +93,9 @@ public class backend_bone {
         for (int i = 0; i < y; i++) {
             current_Box = current_Box.down_Box;
         } // end of for
+        if (current_Box.bomb){
+
+        }
         return current_Box;
     }
 
@@ -123,6 +132,18 @@ public class backend_bone {
         get_Box(3,4).bomb = true;
         // Ende Methoden
     } // end of backend_bone
+
+    public int getHeight() {
+        return height;
+    }
+
+    public int getWidth() {
+        return width;
+    }
+
+    public void onLoose(Runnable looseCallback) {
+        this.looseCallback = looseCallback;
+    }
 }
 
 
