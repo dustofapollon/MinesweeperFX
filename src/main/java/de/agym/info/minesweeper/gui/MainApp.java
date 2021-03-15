@@ -20,15 +20,12 @@ public class MainApp extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         stage.setTitle("MineSweeper");
+        startScreen(stage);
 
-        Scene scene = getStartScene(stage);
-
-        stage.setScene(scene);
-        stage.show();
     }
 
-    private Scene getStartScene(Stage stage) {
-        Button button = new Button("My Button");
+    private void startScreen(Stage stage) {
+        Button button = new Button("Start Game");
 
         TextField height = new TextField("10");
         TextField width = new TextField("10");
@@ -49,8 +46,8 @@ public class MainApp extends Application {
                     Integer.parseInt(bombCount.getText())
             );
         });
-
-        return scene;
+        stage.setScene(scene);
+        stage.show();
     }
 
     private void startGame(Stage stage, int height, int width, int bombs) {
@@ -58,10 +55,11 @@ public class MainApp extends Application {
 
         FXMLLoader loader = new FXMLLoader();
 
-        FXMLController controller = new FXMLController();
-        controller.setBackend(backend);
+        FXMLController controller = new FXMLController(backend);
         loader.setController(controller);
         loader.setLocation(getClass().getResource("scene.fxml"));
+        backend.onLoose( () -> youLoose(stage));
+
 
         Parent root = null;
         try {
@@ -73,7 +71,6 @@ public class MainApp extends Application {
         Scene gameScene = new Scene(root);
         gameScene.getStylesheets().add(getClass().getResource("styles.css").toExternalForm());
 
-        backend.onLoose( () -> youWin(stage));
 
         stage.setScene(gameScene);
         stage.setFullScreen(true);
@@ -85,7 +82,23 @@ public class MainApp extends Application {
     }
 
     private void youLoose(Stage stage){
+        // Stage mit Image erzeugen
+        // Button für Restart
+        System.out.println("YOU LOST");
 
+        Button button = new Button("Try again!");
+
+        VBox formBox = new VBox(10.0,
+                new HBox(new Label("YOU LOOSE")),
+                button);
+
+        Scene scene = new Scene(formBox, 400, 400);
+
+        button.addEventFilter(MouseEvent.MOUSE_CLICKED, event -> {
+            startScreen(stage);
+        });
+        stage.setScene(scene);
+        stage.show();
     }
 
 

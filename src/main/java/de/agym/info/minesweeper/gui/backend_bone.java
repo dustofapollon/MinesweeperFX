@@ -3,13 +3,13 @@ package de.agym.info.minesweeper.gui;
 public class backend_bone {
 
     // Anfang Attribute
-    public static Box first_Box;
-    public static Box current_Box;
+    public  Box first_Box;
+    public  Box current_Box;
     private Box last_Box;
     private Box up1_Box;
     private Box up2_Box;
-    private int width;
-    private int height;
+    private final int width;
+    private final int height;
     private Runnable looseCallback;
     // Ende Attribute
 
@@ -85,7 +85,7 @@ public class backend_bone {
         } // end of for
     }
 
-    public static Box get_Box(int x, int y) {
+    public Box get_Box(int x, int y) {
         current_Box = first_Box;
         for (int i = 0; i < x; i++) {
             current_Box = current_Box.right_Box;
@@ -93,8 +93,8 @@ public class backend_bone {
         for (int i = 0; i < y; i++) {
             current_Box = current_Box.down_Box;
         } // end of for
-        if (current_Box.bomb){
-
+        if (current_Box.bomb && looseCallback != null){
+            looseCallback.run();
         }
         return current_Box;
     }

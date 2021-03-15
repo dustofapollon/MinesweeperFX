@@ -59,7 +59,12 @@ public class FXMLController implements Initializable {
 
     @FXML
     private StackPane pane;
-    private backend_bone backend;
+
+    private final backend_bone backend;
+
+    public FXMLController(backend_bone backend){
+        this.backend = backend;
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -122,7 +127,7 @@ public class FXMLController implements Initializable {
                 aktuellY = y;
                 Robot robot = new Robot();
 
-                Box current_box = backend_bone.get_Box(aktuellX,aktuellY);
+                Box current_box = backend.get_Box(aktuellX,aktuellY);
                 if (e.getSource() instanceof ImageView && e.getButton() == MouseButton.PRIMARY) {
 
                     if(current_box.value==0) {
@@ -275,8 +280,5 @@ public class FXMLController implements Initializable {
 
     }
 
-    public void setBackend(backend_bone backend) {
-        this.backend = backend;
-    }
 }
 
