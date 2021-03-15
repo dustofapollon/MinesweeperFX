@@ -1,15 +1,11 @@
 package de.agym.info.minesweeper.gui;
 
-import java.awt.event.InputEvent;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.control.Label;
@@ -24,25 +20,25 @@ import javafx.stage.Screen;
 public class FXMLController implements Initializable {
 
 
-    private static String markierungsBild = "src/main/resources/markiertfinal.png";
-    private static String grassfinal = "src/main/resources/grassfinal.png";
-    private static String bg1= "src/main/resources/bg1.gif";
-    private static String bg2= "src/main/resources/bg2.gif";
-    private static String bg3= "src/main/resources/bg3.gif";
-    private static String bg4= "src/main/resources/bg4.gif";
-    private static String bg5= "src/main/resources/bg5.gif";
-    private static String bg6= "src/main/resources/bg6.gif";
+    private static String markierungsBild = "/markiertfinal.png";
+    private static String grassfinal = "/grassfinal.png";
+    private static String bg1= "/bg1.gif";
+    private static String bg2= "/bg2.gif";
+    private static String bg3= "/bg3.gif";
+    private static String bg4= "/bg4.gif";
+    private static String bg5= "/bg5.gif";
+    private static String bg6= "/bg6.gif";
 
-    private static String tnt = "src/main/resources/tntfinal.png";
-    private static String stone= "src/main/resources/stonefinal.png";
-    private static String stone1 = "src/main/resources/stone1.png";
-    private static String stone2 = "src/main/resources/stone2.png";
-    private static String stone3 = "src/main/resources/stone3.png";
-    private static String stone4 = "src/main/resources/stone4.png";
-    private static String stone5 = "src/main/resources/stone5.png";
-    private static String stone6 = "src/main/resources/stone6.png";
-    private static String stone7 = "src/main/resources/stone7.png";
-    private static String stone8 = "src/main/resources/stone8.png";
+    private static String tnt = "/tntfinal.png";
+    private static String stone= "/stonefinal.png";
+    private static String stone1 = "/stone1.png";
+    private static String stone2 = "/stone2.png";
+    private static String stone3 = "/stone3.png";
+    private static String stone4 = "/stone4.png";
+    private static String stone5 = "/stone5.png";
+    private static String stone6 = "/stone6.png";
+    private static String stone7 = "/stone7.png";
+    private static String stone8 = "/stone8.png";
 
     private static double screenWidth = 1920;
     private static double screenHeight = 1080;
@@ -87,7 +83,7 @@ public class FXMLController implements Initializable {
                 false,
                 false,
                 false);
-        BackgroundImage myBI= new BackgroundImage(getBild(bg1),
+        BackgroundImage myBI= new BackgroundImage(Util.getBild(bg1),
                 BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
                 mySize);
 
@@ -110,11 +106,11 @@ public class FXMLController implements Initializable {
                 if (e.getSource() instanceof ImageView && e.getButton() == MouseButton.SECONDARY) {
                     ImageView current = (ImageView) e.getSource();
                     if(markiert == false && opened == false) {
-                        current.setImage(getBild(markierungsBild));
+                        current.setImage(Util.getBild(markierungsBild));
                         markiert = true;
                     }
                     else if (markiert == true && opened == false){
-                        current.setImage(getBild(grassfinal));
+                        current.setImage(Util.getBild(grassfinal));
                         markiert = false;
                     }
                     return;
@@ -130,7 +126,7 @@ public class FXMLController implements Initializable {
 
                     if(current_box.value==0) {
                         ImageView current = (ImageView) e.getSource();
-                        current.setImage(getBild(stone));
+                        current.setImage(Util.getBild(stone));
                         opened = true;
                             if(aktuellX != 0){
                                 robot.mousePress();
@@ -154,47 +150,47 @@ public class FXMLController implements Initializable {
                     }
                     if(current_box.value==1) {
                         ImageView current = (ImageView) e.getSource();
-                        current.setImage(getBild(stone1));
+                        current.setImage(Util.getBild(stone1));
                         opened = true;
                     }
                     if(current_box.value==2) {
                         ImageView current = (ImageView) e.getSource();
-                        current.setImage(getBild(stone2));
+                        current.setImage(Util.getBild(stone2));
                         opened = true;
                     }
                     if(current_box.value==3) {
                         ImageView current = (ImageView) e.getSource();
-                        current.setImage(getBild(stone3));
+                        current.setImage(Util.getBild(stone3));
                         opened = true;
                     }
                     if(current_box.value==4) {
                         ImageView current = (ImageView) e.getSource();
-                        current.setImage(getBild(stone4));
+                        current.setImage(Util.getBild(stone4));
                         opened = true;
                     }
                     if(current_box.value==5) {
                         ImageView current = (ImageView) e.getSource();
-                        current.setImage(getBild(stone5));
+                        current.setImage(Util.getBild(stone5));
                         opened = true;
                     }
                     if(current_box.value==6) {
                         ImageView current = (ImageView) e.getSource();
-                        current.setImage(getBild(stone6));
+                        current.setImage(Util.getBild(stone6));
                         opened = true;
                     }
                     if(current_box.value==7) {
                         ImageView current = (ImageView) e.getSource();
-                        current.setImage(getBild(stone7));
+                        current.setImage(Util.getBild(stone7));
                         opened = true;
                     }
                     if(current_box.value==8) {
                         ImageView current = (ImageView) e.getSource();
-                        current.setImage(getBild(stone8));
+                        current.setImage(Util.getBild(stone8));
                         opened = true;
                     }
                     if(current_box.bomb == true){
                         ImageView current = (ImageView) e.getSource();
-                        current.setImage(getBild(tnt));
+                        current.setImage(Util.getBild(tnt));
                         opened = true;
 
                     }
@@ -208,32 +204,18 @@ public class FXMLController implements Initializable {
     }
 
 
-    public Image getBild(String name) {
-        FileInputStream input0;
-        try {
-            input0 = new FileInputStream(name);
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException("Pfad nicht gefunden");
-        }
-
-        Image image;
-        image = new Image(input0);
-
-        return image;
-    }
-
     public ImageView getButton(int iZeile, int iSpalte) {
 
         Image obama;
-        obama = getBild("src/main/resources/obama.jpg");
+        obama = Util.getBild("/obama.jpg");
         Image fackel;
-        fackel = getBild(markierungsBild);
+        fackel = Util.getBild(markierungsBild);
         Image stein;
-        stein = getBild("src/main/resources/stonefinal.png");
+        stein = Util.getBild("/stonefinal.png");
         Image grass;
-        grass = getBild("src/main/resources/grassfinal.png");
+        grass = Util.getBild("/grassfinal.png");
         Image holz;
-        holz = getBild("src/main/resources/rahmenfinal.png");
+        holz = Util.getBild("/rahmenfinal.png");
 
         Image image = obama;
 
