@@ -46,8 +46,8 @@ public class FXMLController implements Initializable {
     private static double screenHeight = 1080;
 
 
-    private static double height = 25;
-    private static double width = 25;
+    private static double height = 5;
+    private static double width = 5;
 
     @FXML
     private Label label;
@@ -67,6 +67,14 @@ public class FXMLController implements Initializable {
         screenWidth = screenBounds.getWidth();
         initGridPane();
         backGround();
+    }
+
+    public double getHeight(){
+        return height;
+    }
+
+    public static double getWidth() {
+        return width;
     }
 
     public void backGround(){

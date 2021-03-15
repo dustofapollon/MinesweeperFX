@@ -104,10 +104,12 @@ public class backend_bone {
     }
 
     public void set_bombs(int height, int width, int bombs) {
-        int bomben = bombs;
+        int bomben = bombs -1;
         while (bomben > 0) {
-            int y = (int) Math.random() * (height);
-            int x = (int) Math.random() * (width);
+            System.out.println(height);
+            int y = (int)(Math.random() * height);
+            int x = (int)(Math.random() * width) + 0;
+            System.out.println(x);
             Box boxen = get_Box(x, y);
             if (boxen.bomb == false) {
                 System.out.println("! ! ! JA ! ! !");
