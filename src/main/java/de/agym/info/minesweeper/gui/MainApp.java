@@ -58,7 +58,8 @@ public class MainApp extends Application {
         FXMLController controller = new FXMLController(backend);
         loader.setController(controller);
         loader.setLocation(getClass().getResource("scene.fxml"));
-        backend.onLoose( () -> youLoose(stage));
+        backend.onLoose(() -> youLoose(stage));
+        backend.onWin(() -> youWin(stage));
 
 
         Parent root = null;
@@ -78,7 +79,19 @@ public class MainApp extends Application {
     }
 
     private void youWin(Stage stage){
+        Button button = new Button("Restart Game");
 
+        VBox formBox = new VBox(10.0,
+                new HBox(new Label("YOU WIN")),
+                button);
+
+        Scene scene = new Scene(formBox, 400, 400);
+
+        button.addEventFilter(MouseEvent.MOUSE_CLICKED, event -> {
+            startScreen(stage);
+        });
+        stage.setScene(scene);
+        stage.show();
     }
 
     private void youLoose(Stage stage){

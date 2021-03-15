@@ -2,6 +2,8 @@ package de.agym.info.minesweeper.gui;
 
 public class backend_bone {
 
+    private int boxesToOpen;
+
     // Anfang Attribute
     public  Box first_Box;
     public  Box current_Box;
@@ -10,13 +12,18 @@ public class backend_bone {
     private Box up2_Box;
     private final int width;
     private final int height;
+
     private Runnable looseCallback;
+    private Runnable winCallback;
     // Ende Attribute
 
     // Anfang Methoden
     public backend_bone(int width, int height, int bombs) {
         this.width = width;
         this.height = height;
+
+        this.boxesToOpen = width * height - bombs;
+
         System.out.println("width = " + width + ", height = " + height + ", bombs = " + bombs);
         first_Box = new Box();
         current_Box = first_Box;
@@ -93,10 +100,19 @@ public class backend_bone {
         for (int i = 0; i < y; i++) {
             current_Box = current_Box.down_Box;
         } // end of for
-        if (current_Box.bomb && looseCallback != null){
+        return current_Box;
+    }
+
+    public Box open_Box(int x, int y){
+        Box box = this.get_Box(x, y);
+        if (box.bomb && looseCallback != null){
             looseCallback.run();
         }
-        return current_Box;
+        boxesToOpen--;
+        if (boxesToOpen == 0){
+            winCallback.run();
+        }
+        return box;
     }
 
     public void apply_values(int width, int height) {
@@ -143,6 +159,10 @@ public class backend_bone {
 
     public void onLoose(Runnable looseCallback) {
         this.looseCallback = looseCallback;
+    }
+
+    public void onWin(Runnable winCallback) {
+        this.winCallback = winCallback;
     }
 }
 

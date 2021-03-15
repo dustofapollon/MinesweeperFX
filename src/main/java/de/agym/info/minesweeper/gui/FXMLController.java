@@ -117,9 +117,7 @@ public class FXMLController implements Initializable {
                         current.setImage(getBild(grassfinal));
                         markiert = false;
                     }
-
-
-
+                    return;
                 }
                 int aktuellX;
                 int aktuellY;
@@ -127,7 +125,7 @@ public class FXMLController implements Initializable {
                 aktuellY = y;
                 Robot robot = new Robot();
 
-                Box current_box = backend.get_Box(aktuellX,aktuellY);
+                Box current_box = backend.open_Box(aktuellX,aktuellY);
                 if (e.getSource() instanceof ImageView && e.getButton() == MouseButton.PRIMARY) {
 
                     if(current_box.value==0) {
