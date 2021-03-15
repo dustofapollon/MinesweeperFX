@@ -31,7 +31,8 @@ public class FXMLController implements Initializable {
     private static String bg5= "src/main/resources/bg5.gif";
     private static String bg6= "src/main/resources/bg6.gif";
 
-
+    private static String tnt = "src/main/resources/tntfinal.png";
+    private static String stone= "src/main/resources/stonefinal.png";
     private static String stone1 = "src/main/resources/stone1.png";
     private static String stone2 = "src/main/resources/stone2.png";
     private static String stone3 = "src/main/resources/stone3.png";
@@ -45,8 +46,8 @@ public class FXMLController implements Initializable {
     private static double screenHeight = 1080;
 
 
-    private static double height = 10;
-    private static double width = 10;
+    private static double height = 25;
+    private static double width = 25;
 
     @FXML
     private Label label;
@@ -75,7 +76,7 @@ public class FXMLController implements Initializable {
                 false,
                 false,
                 false);
-        BackgroundImage myBI= new BackgroundImage(getBild(bg3),
+        BackgroundImage myBI= new BackgroundImage(getBild(bg1),
                 BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
                 mySize);
 
@@ -87,6 +88,7 @@ public class FXMLController implements Initializable {
     public EventHandler createEventhandler(int x, int y) {
         EventHandler<MouseEvent> eventHandler = new EventHandler<MouseEvent>() {
             boolean markiert = false;
+            boolean opened = false;
             public void handle(MouseEvent e) {
                 int getWert;
                 int range = 8;
@@ -96,11 +98,11 @@ public class FXMLController implements Initializable {
                 System.out.println("Button clicked" + x+ "/"+ y);
                 if (e.getSource() instanceof ImageView && e.getButton() == MouseButton.SECONDARY) {
                     ImageView current = (ImageView) e.getSource();
-                    if(markiert == false) {
+                    if(markiert == false && opened == false) {
                         current.setImage(getBild(markierungsBild));
                         markiert = true;
                     }
-                    else if (markiert == true){
+                    else if (markiert == true && opened == false){
                         current.setImage(getBild(grassfinal));
                         markiert = false;
                     }
@@ -108,38 +110,63 @@ public class FXMLController implements Initializable {
 
 
                 }
+                int aktuellX;
+                int aktuellY;
+                aktuellX = x;
+                aktuellY = y;
+                Box current_box = backend_bone.get_Box(aktuellX,aktuellY);
                 if (e.getSource() instanceof ImageView && e.getButton() == MouseButton.PRIMARY) {
-                    if(getWert==1) {
+
+                    if(current_box.value==0) {
+                        ImageView current = (ImageView) e.getSource();
+                        current.setImage(getBild(stone));
+                        opened = true;
+                    }
+                    if(current_box.value==1) {
                         ImageView current = (ImageView) e.getSource();
                         current.setImage(getBild(stone1));
+                        opened = true;
                     }
-                    if(getWert==2) {
+                    if(current_box.value==2) {
                         ImageView current = (ImageView) e.getSource();
                         current.setImage(getBild(stone2));
+                        opened = true;
                     }
-                    if(getWert==3) {
+                    if(current_box.value==3) {
                         ImageView current = (ImageView) e.getSource();
                         current.setImage(getBild(stone3));
+                        opened = true;
                     }
-                    if(getWert==4) {
+                    if(current_box.value==4) {
                         ImageView current = (ImageView) e.getSource();
                         current.setImage(getBild(stone4));
+                        opened = true;
                     }
-                    if(getWert==5) {
+                    if(current_box.value==5) {
                         ImageView current = (ImageView) e.getSource();
                         current.setImage(getBild(stone5));
+                        opened = true;
                     }
-                    if(getWert==6) {
+                    if(current_box.value==6) {
                         ImageView current = (ImageView) e.getSource();
                         current.setImage(getBild(stone6));
+                        opened = true;
                     }
-                    if(getWert==7) {
+                    if(current_box.value==7) {
                         ImageView current = (ImageView) e.getSource();
                         current.setImage(getBild(stone7));
+                        opened = true;
                     }
-                    if(getWert==8) {
+                    if(current_box.value==8) {
                         ImageView current = (ImageView) e.getSource();
                         current.setImage(getBild(stone8));
+                        opened = true;
+                    }
+                    if(current_box.bomb == true){
+                        ImageView current = (ImageView) e.getSource();
+                        current.setImage(getBild(tnt));
+                        opened = true;
+
                     }
 
 
@@ -220,4 +247,6 @@ public class FXMLController implements Initializable {
         }
 
     }
+
 }
+

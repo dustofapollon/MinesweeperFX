@@ -16,7 +16,7 @@ public class MainApp extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("scene.fxml"));
-        
+        backend_bone backend = new backend_bone(25,25,150);
         Scene scene = new Scene(root);
 
         scene.getStylesheets().add(getClass().getResource("styles.css").toExternalForm());
@@ -26,6 +26,8 @@ public class MainApp extends Application {
         stage.setScene(scene);
         stage.setFullScreen(true);
         stage.show();
+
+
     }
 
     public static void main(String[] args) {
