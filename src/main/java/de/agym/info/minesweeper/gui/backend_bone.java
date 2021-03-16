@@ -72,7 +72,7 @@ public class backend_bone {
         System.out.println(" Backend_Bone ? wird ? gestartet . ");
     }
 
-    public void get_output(int width, int height) {
+/*    public void get_output(int width, int height) {
         last_Box = this.first_Box;
         current_Box = this.first_Box;
         System.out.println(" ");
@@ -90,7 +90,8 @@ public class backend_bone {
             last_Box = last_Box.down_Box;
             current_Box = last_Box;
         } // end of for
-    }
+    }*/
+    //gibt current Box wieder
 
     public Box get_Box(int x, int y) {
         current_Box = first_Box;
@@ -102,6 +103,11 @@ public class backend_bone {
         } // end of for
         return current_Box;
     }
+    //öffnet die Box
+    //bei einer Bombe wird die  Methode loseCallback ausgeführt
+    //wenn es keine Bombe war wird der "boxesToOpen" counter um eins runtergesetzt
+    //dieser ergibt sich aus der Feldermenge minus der Bombenanzahl
+    //sobald alle Felder geöffnet sind die keine Bomben sind gewinnt man
 
     public Box open_Box(int x, int y){
         Box box = this.get_Box(x, y);
@@ -115,6 +121,8 @@ public class backend_bone {
         return box;
     }
 
+    //Wert der Box wird ausgerechnet indem die Anzahl der umliegenden Bomben gezählt wird
+
     public void apply_values(int width, int height) {
         last_Box = this.first_Box;
         current_Box = this.first_Box;
@@ -127,6 +135,8 @@ public class backend_bone {
             current_Box = last_Box;
         }
     }
+
+    //Bomben werden zufällig generiert
 
     public void set_bombs(int height, int width, int bombs) {
         int bomben = bombs -1;
@@ -148,6 +158,8 @@ public class backend_bone {
         get_Box(3,4).bomb = true;
         // Ende Methoden
     } // end of backend_bone
+
+    //getter Methoden und this Methoden
 
     public int getHeight() {
         return height;

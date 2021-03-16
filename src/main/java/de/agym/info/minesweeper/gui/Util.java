@@ -10,6 +10,9 @@ import java.util.Objects;
 
 public class Util {
 
+    //Bild Klasse
+    //sorgt dafür, dass der Dateipfad kürzer ist und die Dateien nur im resources Ordner sein müssen
+
     public static Image getBild(String name) {
         URL resource = Util.class.getResource(name);
         Objects.requireNonNull(resource, "nicht gefunden " + name);
