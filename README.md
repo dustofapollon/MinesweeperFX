@@ -4,7 +4,12 @@
 
 -Java 11
 
+Anleitung
 
-Nach dem Klonen der Dateien, bitte die Anwendung mit folgendem Befehl in der Konsole starten:
+-Zip entpacken
+-Konsole öffnen
+-Input in konsole "cd (hier einfach den ordner von der Datei reinziehen sodass ein Pfad erscheint)" 
+-Enter
+-"gradlew run" für Windows, "./gradlew run" für Mac
 
-./gradlew run
+
