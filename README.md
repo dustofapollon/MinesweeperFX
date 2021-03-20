@@ -1,6 +1,6 @@
-#MinesweeperFX
+# MinesweeperFX
 
-##Vorraussetzungen:
+## Vorraussetzungen:
 
 -Java 11
 
